@@ -106,7 +106,7 @@ if language == 'Français':
     col1, col2 = st.columns(2)
     # Interface in the left column
 
-        # Interface in the right column
+        # Interface in the right column(MAnual)
     with col1:
         def user_input():
             input_var1 = st.slider('Précipitation', 0, 500, 500)
@@ -142,7 +142,7 @@ if language == 'Français':
         else:
             st.markdown('Statut: <span style="{}"> Très élevé</span>'.format("color:red;", word_style),
                                 unsafe_allow_html=True)
-    with col2:
+    with col2:      ##(AUTOMATIC)#######
         #st.write("Voulez-vous une prédiction automatique sur les données météo actuelles?")
         city = st.selectbox('Choisir une ville', cities)
         start = datetime.now() - timedelta(days=30)
@@ -193,7 +193,6 @@ if language == 'Français':
 
 
 else:
-    title = "My Title"
 
 
     st.markdown(f"<span style='font-weight: bold; font-size:46px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Malaria Outbreak Warning Application</span>", unsafe_allow_html=True)
