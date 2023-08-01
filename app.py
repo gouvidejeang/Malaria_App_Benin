@@ -136,7 +136,7 @@ if language == 'Français':
             st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
             st.markdown(
-                'Statut: <span style="{}"> Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h</span>'.format(
+                'CONSEIL: <span style="{}"> Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h</span>'.format(
                     "color:pink;", word_style),
                 unsafe_allow_html=True)
         else:
