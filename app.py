@@ -89,7 +89,7 @@ X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y
 svr_model = SVR(kernel='rbf',epsilon=0.1)
 svr_model.fit(X_train, y_train)
 #For prediction status displayed
-word_style = "font-weight: bold; font-size:32px ;font-family: Arial;"
+word_style = "font-weight: bold; font-size:40px ;font-family: Arial Back;"
 #In side bar
 language = st.sidebar.selectbox('Translate/Traduire', ['Français','English'])
 #Interface
@@ -133,7 +133,7 @@ if language == 'Français':
             st.markdown('Statut: <span style="{}">Modéré(Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h)</span>'.format("color:orange;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 30 and prediction[0] < 50):
-            st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
+            st.markdown('Statut: <span style="{}">Elevé(Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h)</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
         else:
             st.markdown('Statut: <span style="{}"> Très élevé</span>'.format("color:red;", word_style),
@@ -284,7 +284,7 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
-st.sidebar.write("Thank you for visiting")
+st.sidebar.write("Thank you for visiting!")
 st.sidebar.write(" Copyright © gbaguidi et al, 2023 (WASCAL-LOME,CC-DRM). All rights reserved.")
 
 
