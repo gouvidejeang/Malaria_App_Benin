@@ -97,9 +97,9 @@ language = st.sidebar.selectbox('Translate/Traduire', ['Français','English'])
 
 # Display text based on language selection
 if language == 'Français':
-    st.markdown("<span style='font-weight: bold; font-size:34px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Application d'alerte en cas d'épidémie de paludisme</span>", unsafe_allow_html=True)
+    st.markdown("<span style='font-weight: bold; font-size:34px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Application d'alerte précoce du risque palustre</span>", unsafe_allow_html=True)
     st.sidebar.markdown("#### Comment ça marche?")
-    st.sidebar.write("Choisir une ville pour une prédiction en temps réel")
+    st.sidebar.write("Choisir une ville pour une prédiction du risque palustre en temps réel")
     st.sidebar.write("OU")
     st.sidebar.write("Renseigner les données d'entrée manuellement en glissant les curseurs")
 
@@ -121,7 +121,7 @@ if language == 'Français':
         prediction = svr_model.predict(df)
         # Add remaining 0.39318 to the initial prediction
         prediction = prediction+ prediction*0.65
-        st.write("Incidence du Paludisme:", "{:.2f}".format(prediction[0]), "%")
+        st.write("Incidence Actuelle du Paludisme:", "{:.2f}".format(prediction[0]), "%")
 
         if (prediction[0] >= 0 and prediction[0] < 5):
             st.markdown('Statut: <span style="{}">Très faible</span>'.format("color:blue;", word_style),
@@ -129,19 +129,26 @@ if language == 'Français':
         elif (prediction[0] >= 5 and prediction[0] < 15):
             st.markdown('Statut: <span style="{}">Faible</span>'.format("color:green;", word_style),
                                 unsafe_allow_html=True)
+        elif (prediction[0] >= 5 and prediction[0] < 15):
+            st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format("color:blue;", word_style),
+                                unsafe_allow_html=True)
         elif (prediction[0] >= 15 and prediction[0] < 30):
-            st.markdown('Statut: <span style="{}">Modéré(Dormez sous Moustiquaires Mmpregnées  , fermez vos porte à partir de 17h , assainir votre cadre de vie , Rendez vous immediatement à l"hopital en cas de fièvre)</span>'.format("color:orange;", word_style),
+            st.markdown('Statut: <span style="{}">Modéré</span>'.format("color:orange;", word_style),
+                        unsafe_allow_html=True)
+            st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées  , Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format("color:blue;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 30 and prediction[0] < 50):
             st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
-            st.markdown(
-                'CONSEIL: <span style="{}"> Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h</span>'.format(
-                    "color:pink;", word_style),
+            st.markdown('RECOMMANDATIONS: <span style="{}"> Dormez sous Moustiquaire Impregnées, Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format("color:blue;", word_style),
                 unsafe_allow_html=True)
         else:
             st.markdown('Statut: <span style="{}"> Très élevé</span>'.format("color:red;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown(
+                'RECOMMANDATIONS: <span style="{}"> Dormez sous Moustiquaire Impregnées, Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                    "color:blue;", word_style),
+                unsafe_allow_html=True)
     with col2:      ##(AUTOMATIC)#######
         #st.write("Voulez-vous une prédiction automatique sur les données météo actuelles?")
         city = st.selectbox('Choisir une ville', cities)
@@ -166,7 +173,7 @@ if language == 'Français':
         st.markdown(f'<i class="fa fa-tachometer"></i> Humidité : {hum:.2f} %', unsafe_allow_html=True)
         if auto_df.isnull().values.any():
            # st.markdown('<span style="color:red;">Echec de Prédiction</span>', unsafe_allow_html=True)
-            st.markdown('<span style="color:red;">Données indisponibles, essayez une ville proche</span>',
+            st.markdown('<span style="color:red;">Données METEO indisponibles , essayez une ville proche. Merci</span>',
                         unsafe_allow_html=True)
 
         else:
@@ -178,18 +185,37 @@ if language == 'Français':
             if (auto_prediction[0] >= 0 and auto_prediction[0] < 5):
                 st.markdown('Statut: <span style="{}">Très faible</span>'.format("color:blue;", word_style),
                             unsafe_allow_html=True)
+            if (auto_prediction[0] >= 0 and auto_prediction[0] < 5):
+                st.markdown('Statut: <span style="{}">Très Faible</span>'.format("color:green;", word_style),
+                            unsafe_allow_html=True)
+                st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                        "color:blue;", word_style),
+                    unsafe_allow_html=True)
             elif (auto_prediction >= 5 and auto_prediction[0] < 15):
                 st.markdown('Statut: <span style="{}">Faible</span>'.format("color:green;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                        "color:blue;", word_style),
+                    unsafe_allow_html=True)
+
             elif (auto_prediction[0] >= 15 and auto_prediction[0] < 30):
                 st.markdown('Statut: <span style="{}">Modéré</span>'.format("color:orange;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées  , Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                        "color:blue;", word_style),
+                    unsafe_allow_html=True)
             elif (auto_prediction[0] >= 30 and auto_prediction[0] < 50):
                 st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées  , Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                        "color:blue;", word_style),
+                    unsafe_allow_html=True)
             else:
                 st.markdown('Statut: <span style="{}"> Très élevé</span>'.format("color:red;", word_style),
                             unsafe_allow_html=True)
+                st.markdown( 'RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées  , Fermez vos portes et fenêtres à partir de 17H , Assainissez votre cadre de vie , Rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format(
+                        "color:blue;", word_style),
+                    unsafe_allow_html=True)
 
 
 else:
@@ -214,23 +240,34 @@ else:
             return input_data
         df = user_input()
         prediction = svr_model.predict(df)
-        st.write("Incidence of malaria:", "{:.2f}".format(prediction[0]), "%")
+        prediction = prediction + prediction * 0.65
+        st.write("Current Incidence of malaria :", "{:.2f}".format(prediction[0]), "%")
 
         if (prediction[0] >= 0 and prediction[0] < 5):
             st.markdown('Statut: <span style="{}">Very low</span>'.format("color:blue;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown('RECOMMENDATION: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                        unsafe_allow_html=True)
         elif (prediction[0] >= 5 and prediction[0] < 15):
             st.markdown('Statut: <span style="{}">Low</span>'.format("color:green;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                        unsafe_allow_html=True)
         elif (prediction[0] >= 15 and prediction[0] < 30):
             st.markdown('Statut: <span style="{}">Medium</span>'.format("color:orange;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                        unsafe_allow_html=True)
         elif (prediction[0] >= 30 and prediction[0] < 50):
             st.markdown('Statut: <span style="{}">High</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                        unsafe_allow_html=True)
         else:
             st.markdown('Statut: <span style="{}"> Very high</span>'.format("color:red;", word_style),
                                 unsafe_allow_html=True)
+            st.markdown('RECOMMENDATIONS: <span style="{}"> Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                        unsafe_allow_html=True)
 
     # Interface in the right column
     with col2:
@@ -257,38 +294,50 @@ else:
         st.markdown(f'<i class="fa fa-tachometer"></i> Humidity : {hum:.2f} %', unsafe_allow_html=True)
         if auto_df.isnull().values.any():
             #st.markdown('<span style="color:red;">Prediction failure</span>', unsafe_allow_html=True)
-            st.markdown('<span style="color:red;">Data unavailable, try a nearby city</span>',
+            st.markdown('<span style="color:red;">METEO Data are not available, try a nearby city. Thank you</span>',
                         unsafe_allow_html=True)
         else:
             # st.dataframe()
             auto_prediction = svr_model.predict(auto_df)
-            st.write("Incidence of malaria today:", "{:.2f}".format(auto_prediction[0]), "%")
+            auto_prediction = auto_prediction + auto_prediction * 0.65
+            st.write(" Current Incidence of Malaria :", "{:.2f}".format(auto_prediction[0]), "%")
             if (auto_prediction[0] >= 0 and auto_prediction[0] < 5):
                 st.markdown('Statut: <span style="{}">Very low</span>'.format("color:blue;", word_style),
+                            unsafe_allow_html=True)
+                st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
                             unsafe_allow_html=True)
             elif (auto_prediction >= 5 and auto_prediction[0] < 15):
                 st.markdown('Statut: <span style="{}">Low</span>'.format("color:green;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                            unsafe_allow_html=True)
             elif (auto_prediction[0] >= 15 and auto_prediction[0] < 30):
                 st.markdown('Statut: <span style="{}">Medium</span>'.format("color:orange;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                            unsafe_allow_html=True)
+
             elif (auto_prediction[0] >= 30 and auto_prediction[0] < 50):
                 st.markdown('Statut: <span style="{}">High</span>'.format("color:pink;", word_style),
+                            unsafe_allow_html=True)
+                st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
                             unsafe_allow_html=True)
             else:
                 st.markdown('Statut: <span style="{}"> Very high</span>'.format("color:red;", word_style),
                             unsafe_allow_html=True)
+                st.markdown('RECOMMENDATIONS: <span style="{}"> Sleep under insecticide-treated mosquito nets, From 5 p.m. on, shut your windows and doors. Ensure that your living space is cleaner. Seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                            unsafe_allow_html=True)
 
 
-st.sidebar.write("")
-st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("Thank you for visiting!")
-st.sidebar.write(" Copyright © gbaguidi et al, 2023 (WASCAL-LOME,CC-DRM). All rights reserved.")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write(" Copyright © gbaguidi et al, 2023 (WASCAL-LOME,Climate Change and Disaster Risk Management, Université de Lomé). All rights reserved.")
 
 
 
