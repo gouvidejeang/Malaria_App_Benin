@@ -89,7 +89,7 @@ X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y
 svr_model = SVR(kernel='rbf',epsilon=0.1)
 svr_model.fit(X_train, y_train)
 #For prediction status displayed
-word_style = "font-weight: bold; font-size:40px ;font-family: Arial Back;"
+word_style = "font-weight: bold; font-size:70px ;font-family: Arial Back;"
 #In side bar
 language = st.sidebar.selectbox('Translate/Traduire', ['Français','English'])
 #Interface
@@ -120,7 +120,7 @@ if language == 'Français':
         df = user_input()
         prediction = svr_model.predict(df)
         # Add remaining 0.39318 to the initial prediction
-        prediction = prediction + prediction*0.65
+        prediction = prediction+ prediction*0.65
         st.write("Incidence du Paludisme:", "{:.2f}".format(prediction[0]), "%")
 
         if (prediction[0] >= 0 and prediction[0] < 5):
@@ -130,7 +130,7 @@ if language == 'Français':
             st.markdown('Statut: <span style="{}">Faible</span>'.format("color:green;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 15 and prediction[0] < 30):
-            st.markdown('Statut: <span style="{}">Modéré(Dormez sous moustiquaire impregnée, fermez vos porte à partir de 19h)</span>'.format("color:orange;", word_style),
+            st.markdown('Statut: <span style="{}">Modéré(Dormez sous Moustiquaires Mmpregnées  , fermez vos porte à partir de 17h , assainir votre cadre de vie , Rendez vous immediatement à l"hopital en cas de fièvre)</span>'.format("color:orange;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 30 and prediction[0] < 50):
             st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
