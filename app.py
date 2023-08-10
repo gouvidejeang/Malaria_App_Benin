@@ -89,7 +89,7 @@ X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y
 svr_model = SVR(kernel='rbf',epsilon=0.1)
 svr_model.fit(X_train, y_train)
 #For prediction status displayed
-word_style = "font-weight: bold; font-size:70px ;font-family: Arial Back;"
+word_style = "font-weight: bold; font-size:90px ;font-family: Arial Back;"
 #In side bar
 language = st.sidebar.selectbox('Translate/Traduire', ['Français','English'])
 #Interface
@@ -97,7 +97,7 @@ language = st.sidebar.selectbox('Translate/Traduire', ['Français','English'])
 
 # Display text based on language selection
 if language == 'Français':
-    st.markdown("<span style='font-weight: bold; font-size:34px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Application d'alerte précoce du risque palustre</span>", unsafe_allow_html=True)
+    st.markdown("<span style='font-weight: bold; font-size:30px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Application d'alerte précoce du risque palustre</span>", unsafe_allow_html=True)
     st.sidebar.markdown("#### Comment ça marche?")
     st.sidebar.write("Choisir une ville pour une prédiction du risque palustre en temps réel")
     st.sidebar.write("OU")
@@ -221,7 +221,7 @@ if language == 'Français':
 else:
 
 
-    st.markdown(f"<span style='font-weight: bold; font-size:46px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Malaria Outbreak Warning Application</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='font-weight: bold; font-size:30px; color:blue;font-family: Arial;background-color: lightblue; padding: 10px;'>Malaria Outbreak Warning Application</span>", unsafe_allow_html=True)
     st.sidebar.markdown("#### How does it work?")
     st.sidebar.write("Choose a city for real-time prediction")
     st.sidebar.write("OR")
@@ -329,8 +329,6 @@ else:
                             unsafe_allow_html=True)
 
 
-st.sidebar.write("")
-st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
