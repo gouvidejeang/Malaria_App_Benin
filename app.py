@@ -231,8 +231,8 @@ else:
     with col1:
         def user_input():
             input_var1 = st.slider('Precipitation', 0, 1000, 1000)
-            input_var2 = st.slider('Average maximum temperature', 29, 11, 100)
-            input_var3 = st.slider('Maximum relative humidity', 0, 100, 100)
+            input_var2 = st.slider('Temperature', 29, 11, 100)
+            input_var3 = st.slider('Humidity', 0, 100, 100)
             data = {'Prec_Average': input_var1,
                     'Average_Temperature_Max': input_var2,
                     'Average_RH_Max': input_var3}
