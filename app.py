@@ -130,7 +130,7 @@ if language == 'Français':
             st.markdown('Statut: <span style="{}">Faible</span>'.format("color:green;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 5 and prediction[0] < 15):
-            st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées . Assainissez votre cadre de vie et rendez vous immediatement à l'hôpital en cas de fièvre. </span>'.format("color:blue;", word_style),
+            st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées . Assainissez votre cadre de vie et rendez vous immediatement à l"hôpital en cas de fièvre. </span>'.format("color:blue;", word_style),
                                 unsafe_allow_html=True)
         elif (prediction[0] >= 15 and prediction[0] < 30):
             st.markdown('Statut: <span style="{}">Modéré</span>'.format("color:orange;", word_style),
