@@ -119,8 +119,7 @@ if language == 'Français':
             return input_data
         df = user_input()
         prediction = svr_model.predict(df)
-        # Add remaining 0.39318 to the initial prediction
-        prediction = prediction+ prediction*0.65
+
         st.write("Incidence Actuelle du Paludisme:", "{:.2f}".format(prediction[0]), "%")
 
         if (prediction[0] >= 0 and prediction[0] < 5):
@@ -179,8 +178,7 @@ if language == 'Français':
         else:
             # st.dataframe()
             auto_prediction = svr_model.predict(auto_df)
-            # Add remaining 0.39318 to the initial prediction
-            auto_prediction = auto_prediction + auto_prediction * 0.65
+            
             st.write("Incidence  actuelle du paludisme:", "{:.2f}".format(auto_prediction[0]), "%")
             if (auto_prediction[0] >= 0 and auto_prediction[0] < 5):
                 st.markdown('Statut: <span style="{}">Très faible</span>'.format("color:blue;", word_style),
@@ -240,7 +238,7 @@ else:
             return input_data
         df = user_input()
         prediction = svr_model.predict(df)
-        prediction = prediction + prediction * 0.65
+
         st.write("Current Incidence of malaria :", "{:.2f}".format(prediction[0]), "%")
 
         if (prediction[0] >= 0 and prediction[0] < 5):
