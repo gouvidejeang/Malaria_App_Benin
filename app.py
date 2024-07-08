@@ -297,7 +297,7 @@ else:
         else:
             # st.dataframe()
             auto_prediction = svr_model.predict(auto_df)
-            auto_prediction = auto_prediction + auto_prediction * 0.65
+            auto_prediction = auto_prediction 
             st.write(" Current Incidence of Malaria :", "{:.2f}".format(auto_prediction[0]), "%")
             if (auto_prediction[0] >= 0 and auto_prediction[0] < 5):
                 st.markdown('Status: <span style="{}">Very low</span>'.format("color:blue;", word_style),
