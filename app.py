@@ -325,9 +325,9 @@ else:
                 st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets. From 5 pm on, shut your windows and doors. Ensure that your living space is cleaner and seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
                             unsafe_allow_html=True)
             elif (prediction[0] >= 24.45 and prediction[0] < 28.91):
-            st.markdown('Status: <span style="{}">Very High</span>'.format("color:pink;", word_style),
+                st.markdown('Status: <span style="{}">Very High</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
-            st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets. From 5 pm on, shut your windows and doors. Ensure that your living space is cleaner and seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
+                st.markdown('RECOMMENDATIONS: <span style="{}">Sleep under insecticide-treated mosquito nets. From 5 pm on, shut your windows and doors. Ensure that your living space is cleaner and seek immediate medical attention in the case of a fever.</span>'.format("color:blue;", word_style),
                         unsafe_allow_html=True)
             else:
                 st.markdown('Status: <span style="{}"> Very high</span>'.format("color:red;", word_style),
