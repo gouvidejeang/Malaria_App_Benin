@@ -136,7 +136,7 @@ if language == 'Français':
                         unsafe_allow_html=True)
             st.markdown('RECOMMANDATIONS: <span style="{}">Dormez sous Moustiquaires Impregnées  . Fermez vos portes et fenêtres à partir de 17H . Assainissez votre cadre de vie . Rendez vous immediatement au centre de santé en cas de fièvre. </span>'.format("color:blue;", word_style),
                                 unsafe_allow_html=True)
-        elif (prediction[0] >= 28.91 and prediction[0] < 28.91):
+        elif (prediction[0] >= 24.45 and prediction[0] < 28.91):
             st.markdown('Statut: <span style="{}">Elevé</span>'.format("color:pink;", word_style),
                                 unsafe_allow_html=True)
             st.markdown('RECOMMANDATIONS: <span style="{}"> Dormez sous Moustiquaire Impregnées. Fermez vos portes et fenêtres à partir de 17H . Assainissez votre cadre de vie et rendez vous immediatement au centre de santé en cas de fièvre. </span>'.format("color:blue;", word_style),
