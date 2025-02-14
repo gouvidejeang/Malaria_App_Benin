@@ -96,18 +96,14 @@ train_data = LoR[:train_size]
 val_data = LoR[train_size:train_size + val_size]
 test_data = LoR[train_size + val_size:]
 
-# Define features and target
-X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
-y_train = train_data['Malaria_incidence']
-X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
-y_test = test_data['Malaria_incidence']
+X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']].values
+y_train = train_data['Malaria_incidence'].values
 
 # Initialize the SVR model
 svr_model = SVR(kernel='rbf', epsilon=0.1)
 
 # Fit the model using the training data
 svr_model.fit(X_train, y_train)
-
 # Load calibration data
 calibration_data = pd.read_csv("Prediced_Test.csv")
 
