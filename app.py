@@ -81,7 +81,6 @@ coordinates = {
 
 # Fit the SVR model for the manuel prediction
 LoR = pd.read_csv("Average_Northern.csv")
-LoR = LoR.dropna()
 # Set random seed for reproducibility
 np.random.seed(123)
 
@@ -115,7 +114,6 @@ y_test_clean = test_data_clean['Malaria_incidence']
 
 # Fit the model with cleaned data
 svr_model.fit(X_train_clean, y_train_clean)
-
 
 # Load calibration data
 calibration_data = pd.read_csv("Prediced_Test.csv")
