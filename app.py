@@ -97,14 +97,25 @@ val_data = LoR[train_size:train_size + val_size]
 test_data = LoR[train_size + val_size:]
 
 # Define features and target
+# Define features and target
 X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_train = train_data['Malaria_incidence']
 X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_test = test_data['Malaria_incidence']
 
-# Train the SVR model
-svr_model = SVR(kernel='rbf', epsilon=0.1)
-svr_model.fit(X_train, y_train)
+# Remove rows with NaN values from X_train and y_train
+train_data_clean = train_data.dropna(subset=['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max', 'Malaria_incidence'])
+X_train_clean = train_data_clean[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
+y_train_clean = train_data_clean['Malaria_incidence']
+
+# Remove NaN from test set if necessary
+test_data_clean = test_data.dropna(subset=['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max', 'Malaria_incidence'])
+X_test_clean = test_data_clean[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
+y_test_clean = test_data_clean['Malaria_incidence']
+
+# Fit the model with cleaned data
+svr_model.fit(X_train_clean, y_train_clean)
+
 
 # Load calibration data
 calibration_data = pd.read_csv("Prediced_Test.csv")
