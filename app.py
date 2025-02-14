@@ -98,6 +98,10 @@ test_data = LoR[train_size + val_size:]
 
 X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']].values
 y_train = train_data['Malaria_incidence'].values
+X_val = val_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']].values
+y_val = val_data['Malaria_incidence'].values
+X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']].values
+y_test = test_data['Malaria_incidence'].values
 
 # Initialize the SVR model
 svr_model = SVR(kernel='rbf', epsilon=0.1)
