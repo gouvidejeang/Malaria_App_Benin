@@ -81,7 +81,7 @@ coordinates = {
 
 # Fit the SVR model for the manuel prediction
 LoR = pd.read_csv("Average_Northern.csv")
-
+LoR = LoR.dropna()
 # Set random seed for reproducibility
 np.random.seed(123)
 
