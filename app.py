@@ -80,7 +80,6 @@ coordinates = {
 
 # Fit the SVR model for the manuel prediction
 LoR = pd.read_csv("Average_Northern.csv")
-LoR['Year'] = LoR['Year'].astype(int)  # Ensure Year is numeric
 
 # Set random seed for reproducibility
 np.random.seed(123)
