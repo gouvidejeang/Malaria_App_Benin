@@ -102,6 +102,7 @@ y_train = train_data['Malaria_incidence']
 X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_test = test_data['Malaria_incidence']
 # Fit the model with cleaned data
+svr_model = SVR(kernel='rbf',epsilon=0.1)
 svr_model.fit(X_test, y_train)
 
 # Load calibration data
