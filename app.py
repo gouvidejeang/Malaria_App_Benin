@@ -5,6 +5,7 @@ import sklearn.model_selection
 from meteostat import Stations, Daily, Point, Hourly
 from datetime import datetime, timedelta
 import base64
+import numpy as np
 
 
 
