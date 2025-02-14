@@ -101,19 +101,8 @@ X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max
 y_train = train_data['Malaria_incidence']
 X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_test = test_data['Malaria_incidence']
-
-# Remove rows with NaN values from X_train and y_train
-train_data_clean = train_data.dropna(subset=['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max', 'Malaria_incidence'])
-X_train_clean = train_data_clean[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
-y_train_clean = train_data_clean['Malaria_incidence']
-
-# Remove NaN from test set if necessary
-test_data_clean = test_data.dropna(subset=['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max', 'Malaria_incidence'])
-X_test_clean = test_data_clean[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
-y_test_clean = test_data_clean['Malaria_incidence']
-
 # Fit the model with cleaned data
-svr_model.fit(X_train_clean, y_train_clean)
+svr_model.fit(X_test, y_train)
 
 # Load calibration data
 calibration_data = pd.read_csv("Prediced_Test.csv")
