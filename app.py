@@ -81,6 +81,7 @@ coordinates = {
 
 # Fit the SVR model for the manuel prediction
 LoR = pd.read_csv("Average_Northern.csv")
+
 # Set random seed for reproducibility
 np.random.seed(123)
 
@@ -96,15 +97,16 @@ val_data = LoR[train_size:train_size + val_size]
 test_data = LoR[train_size + val_size:]
 
 # Define features and target
-# Define features and target
 X_train = train_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_train = train_data['Malaria_incidence']
 X_test = test_data[['Prec_Average', 'Average_Temperature_Max', 'Average_RH_Max']]
 y_test = test_data['Malaria_incidence']
-# Fit the model with cleaned data
-X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.70, random_state=42)
-svr_model = SVR(kernel='rbf',epsilon=0.1)
-svr_model.fit(X_test, y_train)
+
+# Initialize the SVR model
+svr_model = SVR(kernel='rbf', epsilon=0.1)
+
+# Fit the model using the training data
+svr_model.fit(X_train, y_train)
 
 # Load calibration data
 calibration_data = pd.read_csv("Prediced_Test.csv")
